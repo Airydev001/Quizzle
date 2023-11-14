@@ -14,26 +14,26 @@ class QuestionPaperController extends GetxController {
   }
 
   Future<void> getAllPaper() async {
-    List<String> imgName = ["biology", "chemistry", "maths", "physics"];
+    //List<String> imgName = ["biology", "chemistry", "maths", "physics"];
 
     try {
       //Get the data from the firebase collection called questionPaperRF references.dart
-      // QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
-      // final paperList = data.docs
-      //     .map((paper) => QuestionPaperModel.fromSnapshot(paper))
-      //     .toList();
-      // allPapers.assignAll(paperList);
-      // for (var paper in paperList) {
-      //   final imgUrl =
-      //       await Get.find<FirebaseStorageService>().getImage(paper.title);
+      QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
+      final paperList = data.docs
+          .map((paper) => QuestionPaperModel.fromSnapshot(paper))
+          .toList();
+      allPapers.assignAll(paperList);
+      for (var paper in paperList) {
+        final imgUrl =
+            await Get.find<FirebaseStorageService>().getImage(paper.title);
 
-      //   paper.imageUrl = imgUrl;
-      // }
-      // allPapers.assignAll(paperList);
-      for (var img in imgName) {
-        final imgUrl = await Get.find<FirebaseStorageService>().getImage(img);
-        allpaperImages.add(imgUrl!);
+        paper.imageUrl = imgUrl;
       }
+      allPapers.assignAll(paperList);
+      // for (var img in imgName) {
+      //   final imgUrl = await Get.find<FirebaseStorageService>().getImage(img);
+      //   allpaperImages.add(imgUrl!);
+      // }
     } catch (e) {
       print(e);
     }

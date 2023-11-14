@@ -16,7 +16,7 @@ class QuestionCard extends StatelessWidget {
     const double _padding = 10.0;
     
     return Container(
-      decoration: BoxDecoration(
+      decoration: BoxDecoration(  
         borderRadius: UIParameters.cardBorderRadius,
         color: Theme.of(context).cardColor
       ),
@@ -71,10 +71,10 @@ class QuestionCard extends StatelessWidget {
                                     : Theme.of(context).primaryColor,
                               ),
                               Text: Text(
-                                '${model.questionCount} questions',
+                                ' questions',
                                 style: detailText.copyWith(
                                   color: Get.isDarkMode
-                                      ? Colors.white
+                                      ? Colors.red
                                       : Theme.of(context).primaryColor,
                                 ),
                               )),

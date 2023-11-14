@@ -4,11 +4,13 @@ class AppCircleButton extends StatelessWidget {
   const AppCircleButton(
       {super.key,
       required this.child,
+      this.benf = true,
       this.color,
       this.width = 60,
       this.onTap});
 
   final Widget child;
+   final bool benf;
   final Color? color;
   final double width;
   final VoidCallback? onTap;
@@ -18,7 +20,7 @@ class AppCircleButton extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       clipBehavior: Clip.hardEdge,
-      shape: const CircleBorder(),
+      shape: benf? CircleBorder() : RoundedRectangleBorder(),
       child: InkWell(
         onTap: onTap,
         child: child,

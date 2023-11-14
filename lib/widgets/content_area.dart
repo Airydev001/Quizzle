@@ -6,24 +6,29 @@ import 'package:quizle/configs/themes/ui_parameters.dart';
 class ContentArea extends StatelessWidget {
   final bool addPadding;
   final Widget child;
-  const ContentArea({super.key,  this.addPadding=true, required this.child});
+  const ContentArea({super.key, this.addPadding = true, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.vertical(
+      borderRadius: const BorderRadius.vertical(
         top: Radius.circular(20),
       ),
       clipBehavior: Clip.hardEdge,
       type: MaterialType.transparency,
       child: Ink(
         decoration: BoxDecoration(color: customScaffoldColor(context)),
-      padding: addPadding? EdgeInsets.only(
-        top: mobileScreenPadding,
-        left: mobileScreenPadding,
-        right: mobileScreenPadding,
-      ):EdgeInsets.zero,
-      child: child,
+        padding: addPadding
+            ? EdgeInsets.only(
+                top: mobileScreenPadding,
+                left: mobileScreenPadding,
+                right: mobileScreenPadding,
+              )
+            : EdgeInsets.only(
+                top: 0,
+                bottom: 0,
+              ),
+        child: child,
       ),
     );
   }
