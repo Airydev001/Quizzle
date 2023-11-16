@@ -3,6 +3,7 @@ import 'package:quizle/controllers/question_papers/question_paper_controller.dar
 import 'package:quizle/controllers/zoom_drawer.dart';
 import 'package:quizle/screens/home/home_screen.dart';
 import 'package:quizle/screens/introduction/introduction.dart';
+import 'package:quizle/screens/login/login_screen.dart';
 import 'package:quizle/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -16,5 +17,8 @@ class AppRoutes {
               Get.put(QuestionPaperController());
               Get.put(MyZoomDrawerController());
             })),
+            GetPage(name: LoginScreen.routeName
+            
+            , page: ()=> const LoginScreen())
       ];
 }

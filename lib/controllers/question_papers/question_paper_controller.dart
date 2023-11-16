@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:quizle/controllers/auth_Controller.dart';
 import 'package:quizle/firebase_ref/references.dart';
 import 'package:quizle/models/question_paper.dart';
 import 'package:quizle/services/firebase_storage_services.dart';
@@ -36,6 +37,22 @@ class QuestionPaperController extends GetxController {
       // }
     } catch (e) {
       print(e);
+    }
+  }
+
+  void navigateToQuestions(
+      {required QuestionPaperModel paper, bool tryAgain = false}) {
+    AuthController _authController = Get.find();
+
+    if (_authController.isLoggedIn()) {
+      if (tryAgain) {
+        Get.back();
+        //Get.offNamed()
+      } else{
+        //Get.toNamed()
+      }
+    } else {
+      _authController.showLoginAlertDialogue();
     }
   }
 }

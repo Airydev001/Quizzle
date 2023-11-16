@@ -8,6 +8,7 @@ import 'package:quizle/configs/themes/custom_text_styles.dart';
 import 'package:quizle/configs/themes/ui_parameters.dart';
 import 'package:quizle/controllers/question_papers/question_paper_controller.dart';
 import 'package:quizle/controllers/zoom_drawer.dart';
+import 'package:quizle/screens/home/menu_screen.dart';
 import 'package:quizle/screens/home/question_card.dart';
 import 'package:quizle/services/firebase_storage_services.dart';
 import 'package:quizle/widgets/app_circle_button.dart';
@@ -27,11 +28,14 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
       body: GetBuilder<MyZoomDrawerController>(
         builder: (_) {
           return ZoomDrawer(
+            borderRadius: 50.0,
             controller: _.zoomDrawerController,
-            menuScreen: Text(
-              "Hi ....",
-              style: TextStyle(color: Colors.red),
-            ),
+            showShadow: true,
+            angle: 0.0,
+            style: DrawerStyle.defaultStyle,
+            menuBackgroundColor: Colors.white.withOpacity(0.5),
+            slideWidth: MediaQuery.of(context).size.width * 0.8,
+            menuScreen: MyMenuScreen(),
             mainScreen: Container(
                 decoration: BoxDecoration(gradient: mainGradient()),
                 child: SafeArea(
@@ -46,7 +50,6 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
                           Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: GestureDetector(
-                            
                               child: const Icon(
                                 AppIcons.menuLeft,
                               ),
