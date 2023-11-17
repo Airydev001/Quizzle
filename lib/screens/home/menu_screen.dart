@@ -31,40 +31,70 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                       controller.toggleDrawer();
                     },
                   )),
-                  Padding(
-                    padding:  EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width*0.3,
-                      top: MediaQuery.of(context).size.height*0.2
+              Padding(
+                padding: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width * 0.2,
+                    top: MediaQuery.of(context).size.height * 0.15),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(controller.user.value!.photoURL!),
                     ),
-                    child: Column(
-                      children: [
-                        Obx(() => controller.user.value == null?
-                        const SizedBox(
-                  
-                        ) : Text(
-                      controller.user.value!.displayName??'' ,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 18,
-                        color: onSurfaceTextColor
-                      ),   
-                        )
-                        )
-                      ],
+                    SizedBox(
+                      height: 25,
                     ),
-                  )
+                    Obx(() => controller.user.value == null
+                        ? const SizedBox()
+                        : Text(
+                            controller.user.value!.displayName ?? '',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 18,
+                                color: onSurfaceTextColor),
+                          )),
+                    Spacer(
+                      flex: 1,
+                    ),
+                    DrawerButton(
+                      label: "website",
+                      onPressed: () => controller.website(),
+                    ),
+                    DrawerButton(
+                      label: "facebook",
+                      onPressed: () => controller.facebook(),
+                    ),
+                    DrawerButton(
+                      label: "email",
+                      onPressed: () => controller.email(),
+                    ),
+                    const Spacer(
+                      flex: 4,
+                    ),
+                    DrawerButton(
+                      label: "log out",
+                      onPressed: () => controller.signOut(),
+                    )
+                  ],
+                ),
+              )
             ],
           ))),
     );
   }
 }
 
+class DrawerButton extends StatelessWidget {
+  const DrawerButton({super.key, required this.label, this.onPressed});
 
-// class DrawerButton extends StatelessWidget {
-//   const DrawerButton({super.key});
+  final String label;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextButton.icon(onPressed: ()=>null , icon: icon, label: label)
-//   }
-// }
+  final VoidCallback? onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(label),
+    );
+  }
+}

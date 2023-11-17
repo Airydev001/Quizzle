@@ -17,6 +17,8 @@ import 'package:quizle/widgets/content_area.dart';
 class HomeScreen extends GetView<MyZoomDrawerController> {
   const HomeScreen({super.key});
 
+  static const String routeName = "/home";
+
   @override
   Widget build(BuildContext context) {
     Get.put(FirebaseStorageService());

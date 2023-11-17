@@ -10,7 +10,7 @@ class MyZoomDrawerController extends GetxController {
   @override
   void onReady() {
     user.value = Get.find<AuthController>().getUser();
-    
+
     super.onReady();
   }
 
@@ -19,11 +19,18 @@ class MyZoomDrawerController extends GetxController {
     update();
   }
 
-  void signOut() {}
+  void signOut() {
+    Get.find<AuthController>().signOut();
+  }
 
   void signIn() {}
 
-  void website() {}
+  void website() {
+    _launch("www.google.com");
+  }
+  void facebook() {
+    _launch("www.facebook.com");
+  }
 
   void email() {
     final Uri emailLaunchUri =

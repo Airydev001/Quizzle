@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quizle/firebase_ref/references.dart';
+import 'package:quizle/screens/home/home_screen.dart';
 import 'package:quizle/screens/login/login_screen.dart';
 import 'package:quizle/widgets/dialogs/dialogue_widget.dart';
 
@@ -44,6 +45,7 @@ class AuthController extends GetxController {
         final User? user = authResult.user;
         print(user);
         await saveUser(account);
+        navigateToHomePage();
       }
     } on Exception catch (error) {
       print(error);
@@ -63,18 +65,29 @@ class AuthController extends GetxController {
     });
   }
 
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      navigateToHomePage();
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+  }
+
   void navigateToIntroduction() {
     Get.offAllNamed("/introduction");
   }
 
+  void navigateToHomePage() {
+    Get.offAllNamed(HomeScreen.routeName);
+  }
+
   void showLoginAlertDialogue() {
-    Get.dialog(
-        Dialogs.questionStartDialogue(onTap: () {
-          Get.back();
-          //Navigate to log in page
-          NavigateLoginPage();
-        }),
-        barrierDismissible: false);
+    Get.dialog(Dialogs.questionStartDialogue(onTap: () {
+      Get.back();
+      //Navigate to log in page
+      NavigateLoginPage();
+    }), barrierDismissible: false);
   }
 
   void NavigateLoginPage() {
