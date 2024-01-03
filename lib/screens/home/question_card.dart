@@ -22,7 +22,9 @@ class QuestionCard extends GetView<QuestionPaperController> {
           color: Theme.of(context).cardColor),
       child: InkWell(
         onTap: () {
-          controller.navigateToQuestions(paper: model);
+          controller.navigateToQuestions(paper: model,
+          tryAgain: false,
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(_padding),
@@ -73,8 +75,8 @@ class QuestionCard extends GetView<QuestionPaperController> {
                                       ? Colors.white
                                       : Theme.of(context).primaryColor,
                                 ),
-                                Text: Text(
-                                  ' questions',
+                               Text:  Text(
+                                  '${model.questionCount} questions',
                                   style: detailText.copyWith(
                                     color: Get.isDarkMode
                                         ? Colors.red

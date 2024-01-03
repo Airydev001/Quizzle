@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quizle/controllers/auth_Controller.dart';
 import 'package:quizle/firebase_ref/references.dart';
 import 'package:quizle/models/question_paper.dart';
+import 'package:quizle/screens/question/question_screen.dart';
 import 'package:quizle/services/firebase_storage_services.dart';
 
 class QuestionPaperController extends GetxController {
@@ -48,8 +49,8 @@ class QuestionPaperController extends GetxController {
       if (tryAgain) {
         Get.back();
         //Get.offNamed()
-      } else{
-        //Get.toNamed()
+      } else {
+        Get.toNamed(QuestionsScreen.routeName, arguments: paper);
       }
     } else {
       _authController.showLoginAlertDialogue();

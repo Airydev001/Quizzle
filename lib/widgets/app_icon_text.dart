@@ -14,7 +14,7 @@ class AppIconText extends StatelessWidget {
         icon,
          const  SizedBox(
           width: 4,
-        )
+        ), Text,
       ],
     );
   }
