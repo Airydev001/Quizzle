@@ -5,6 +5,7 @@ import 'package:quizle/configs/themes/ui_parameters.dart';
 import 'package:quizle/controllers/question_papers/question_controller.dart';
 import 'package:quizle/firebase_ref/loading_status.dart';
 import 'package:quizle/screens/question/question_place_holder.dart';
+import 'package:quizle/screens/question/test_overview.dart';
 import 'package:quizle/widgets/common/background_decoration.dart';
 import 'package:quizle/widgets/common/custom_app_bar.dart';
 import 'package:quizle/widgets/common/main_button.dart';
@@ -37,13 +38,24 @@ class QuestionsScreen extends GetView<QuestionsController> {
               style: appBarTS,
             )),
       ),
+      
       body: BackgroundDecoration(
+        
         child: Obx(() => Column(
+          mainAxisSize: MainAxisSize.min,
               children: [
+
                 if (controller.loadingStatus.value == LoadingStatus.loading)
-                  const Expanded(
-                      child: ContentArea(child: QuestionScreenPlaceHolder())),
-                if (controller.loadingStatus.value == LoadingStatus.completed)
+                CircularProgressIndicator(color: onSurfaceTextColor,),
+                SizedBox(
+                  height: 10,
+                ),
+                  // const Expanded(
+                  //     child: ContentArea(child: 
+                  //     // QuestionScreenPlaceHolder()
+                  //     CircularProgressIndicator()
+                  //     )),
+                              if (controller.loadingStatus.value == LoadingStatus.completed)
                   Expanded(
                       child: ContentArea(
                     child: SingleChildScrollView(
@@ -91,6 +103,8 @@ class QuestionsScreen extends GetView<QuestionsController> {
                       ),
                     ),
                   )),
+                    
+
                 ColoredBox(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Padding(
@@ -119,7 +133,7 @@ class QuestionsScreen extends GetView<QuestionsController> {
                             child: MainButton(
                               onTap: () {
                                 controller.isLastQuestion
-                                    ? Container()
+                                    ? Get.toNamed(TestOverviewWidget.routeName)
                                     : controller.nextQuestion();
                               },
                               title: controller.isLastQuestion

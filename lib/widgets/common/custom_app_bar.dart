@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quizle/configs/themes/app_icons.dart';
 import 'package:quizle/configs/themes/custom_text_styles.dart';
 import 'package:quizle/configs/themes/ui_parameters.dart';
+import 'package:quizle/screens/question/test_overview.dart';
 import 'package:quizle/widgets/app_circle_button.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -44,13 +46,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
               leading??Transform.translate(offset: Offset(-14, 0),
-              child: BackButton(),
+              child: const BackButton(),
               ),
               if(showActionIcon)
-              Transform.translate(offset: Offset(10, 0),
+              Transform.translate(offset: const Offset(10, 0),
               child: AppCircleButton(
-                child: const Icon(Icons.menu_sharp,size: 20,),
-                onTap: onMenuActionTap??null,
+                onTap: onMenuActionTap??()=>Get.toNamed(TestOverviewWidget.routeName),
+                child: const Icon(AppIcons.menu),
               ),
               )
             ],)
